@@ -8,15 +8,78 @@
     span.voice-active {
       background-color: yellow;
     }
+
+    body {
+	background: #FFF;
+	color: #111;
+	font: 14px Baskerville, "Palatino Linotype", "Times New Roman", Times, serif;
+	text-align: center;
+	}
+
+	div, h1, h2, p {
+		margin: 0;
+		padding: 0;
+		}
+
+		#poem {
+			margin: auto;
+			padding: 20px 0;
+			text-align: left;
+			width: 390px;
+			}
+
+			h1, h2 {
+				font-weight: normal;
+				text-align: center;
+				}
+
+			h1 {
+				font-size: 34px;
+				line-height: 1.2;
+				margin-bottom: 10px;
+				}
+
+			h2 {
+				color: #666;
+				font-size: 18px;
+				font-style: italic;
+				margin-bottom: 30px;
+				}
+
+			p {
+				line-height: 1.5;
+				margin-bottom: 15px;
+				}
+
+			h2:before {
+				content: '- ';
+				}
+
+			h2:after {
+				content: ' -';
+				}
+
+			#poem h2 + p:first-letter {
+					float: left;
+					font-size: 38px;
+					line-height: 1;
+					margin: 2px 5px 0 0;
+				}
+
+			#poem p:first-line {
+				font-variant: small-caps;
+				letter-spacing: 1px;
+				}
+
+			#poem p:last-child {
+				margin-bottom: 30px;
+				padding-bottom: 30px;
+				}
+
   </style>
 </head>
 
 <body>
-
-  <audio id="target" controls>
-    <source src="Hamlet_Tobeornottobe_64kb.mp3" type="audio/mpeg">
-      Your browser does not support HTML5 video.
-  </audio>
 
   <script>
   $(function(){
@@ -43,7 +106,16 @@
     })
   })
   </script>
-  <br />
+  <div id="poem">
+  <h1>Hamlet</h1>
+  <h2>Act III, Scene 1</h2>
+
+
+    <audio id="target" controls>
+      <source src="Hamlet_Tobeornottobe_64kb.mp3" type="audio/mpeg">
+        Your browser does not support HTML5 video.
+    </audio>
+  <p>
   <span class="verse" from="00.00" to="08.609">To be or not to be-that is the question:</span><br />
   <span class="verse" from="08.609" to="15.00">Whether 'tis nobler in the mind to suffer</span><br />
   <span class="verse" from="15.00" to="18.06">The slings and arrows of outrageous fortune,</span><br />
@@ -77,6 +149,8 @@
 <span class="verse" from="124" to="129">And enterprises of great pitch and moment,</span><br />
 <span class="verse" from="129" to="134">With this regard their currents turn awry,</span><br />
 <span class="verse" from="134" to="145">And lose the name of action.</span><br />
+</p>
+</div>
 </body>
 
 </html>
