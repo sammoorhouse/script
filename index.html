@@ -4,153 +4,193 @@
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <style>
-
     span.voice-active {
       background-color: yellow;
     }
 
     body {
-	background: #FFF;
-	color: #111;
-	font: 14px Baskerville, "Palatino Linotype", "Times New Roman", Times, serif;
-	text-align: center;
-	}
+      background: #FFF;
+      color: #111;
+      font: 14px Baskerville, "Palatino Linotype", "Times New Roman", Times, serif;
+      text-align: center;
+    }
 
-	div, h1, h2, p {
-		margin: 0;
-		padding: 0;
-		}
+    div,
+    h1,
+    h2,
+    p {
+      margin: 0;
+      padding: 0;
+    }
 
-		#poem {
-			margin: auto;
-			padding: 20px 0;
-			text-align: left;
-			width: 390px;
-			}
+    #poem {
+      margin: auto;
+      padding: 20px 0;
+      text-align: left;
+      width: 390px;
+    }
 
-			h1, h2 {
-				font-weight: normal;
-				text-align: center;
-				}
+    h1,
+    h2 {
+      font-weight: normal;
+      text-align: center;
+    }
 
-			h1 {
-				font-size: 34px;
-				line-height: 1.2;
-				margin-bottom: 10px;
-				}
+    h1 {
+      font-size: 34px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
 
-			h2 {
-				color: #666;
-				font-size: 18px;
-				font-style: italic;
-				margin-bottom: 30px;
-				}
+    h2 {
+      color: #666;
+      font-size: 18px;
+      font-style: italic;
+      margin-bottom: 30px;
+    }
 
-			p {
-				line-height: 1.5;
-				margin-bottom: 15px;
-				}
+    audio {
+      margin-bottom: 30px;
+    }
 
-			h2:before {
-				content: '- ';
-				}
+    p {
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
 
-			h2:after {
-				content: ' -';
-				}
+    h2:before {
+      content: '- ';
+    }
 
-			#poem h2 + p:first-letter {
-					float: left;
-					font-size: 38px;
-					line-height: 1;
-					margin: 2px 5px 0 0;
-				}
+    h2:after {
+      content: ' -';
+    }
 
-			#poem p:first-line {
-				font-variant: small-caps;
-				letter-spacing: 1px;
-				}
+    #poem p:first-letter {
+      float: left;
+      font-size: 38px;
+      line-height: 1;
+      margin: 2px 5px 0 0;
+    }
 
-			#poem p:last-child {
-				margin-bottom: 30px;
-				padding-bottom: 30px;
-				}
+    #poem p:first-line {
+      font-variant: small-caps;
+      letter-spacing: 1px;
+    }
 
+    #poem p:last-child {
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+    }
   </style>
 </head>
 
 <body>
 
   <script>
-  $(function(){
-    var target = $("#target");
-    target.bind("timeupdate", function() {
-      $(".verse").each(function() {
-        var from = parseFloat($(this).attr("from"))
-        var to = parseFloat($(this).attr("to"))
-        var time = target[0].currentTime
-        if ((from < time) && (to >= time)) {
-          $(this).toggleClass("voice-active", true)
-        } else {
-          $(this).toggleClass("voice-active", false)
-        }
+    $(function() {
+      var target = $("#target");
+      target.bind("timeupdate", function() {
+        $(".verse").each(function() {
+          var from = parseFloat($(this).attr("from"))
+          var to = parseFloat($(this).attr("to"))
+          var time = target[0].currentTime
+          if ((from <= time) && (to > time)) {
+            $(this).toggleClass("voice-active", true)
+          } else {
+            $(this).toggleClass("voice-active", false)
+          }
+        })
       })
-    })
-    target.bind("canplay", function(){
-      $(".verse").each(function(){
-        var from = parseFloat($(this).attr("from"))
-        $(this).bind("click", function(){
-          target[0].currentTime = from;
+      target.bind("canplay", function() {
+        $(".verse").each(function() {
+          var from = parseFloat($(this).attr("from"))
+          $(this).bind("click", function() {
+            target[0].currentTime = from;
+          })
         })
       })
     })
-  })
   </script>
   <div id="poem">
-  <h1>Hamlet</h1>
-  <h2>Act III, Scene 1</h2>
+    <h1>Hamlet</h1>
+
+    <h2>Act III, Scene 1</h2>
 
 
     <audio id="target" controls>
-      <source src="Hamlet_Tobeornottobe_64kb.mp3" type="audio/mpeg">
-        Your browser does not support HTML5 video.
+      <source src="Hamlet_Tobeornottobe_64kb.mp3" type="audio/mpeg"> Your browser does not support HTML5 video.
     </audio>
-  <p>
-  <span class="verse" from="00.00" to="08.609">To be or not to be-that is the question:</span><br />
-  <span class="verse" from="08.609" to="15.00">Whether 'tis nobler in the mind to suffer</span><br />
-  <span class="verse" from="15.00" to="18.06">The slings and arrows of outrageous fortune,</span><br />
-  <span class="verse" from="18.06" to="22.96">Or to take arms against a sea of troubles,</span><br />
-<span class="verse" from="22.96" to="34">And, by opposing, end them. To die, to sleep-</span><br />
-<span class="verse" from="34" to="39">No more-and by a sleep to say we end</span><br />
-<span class="verse" from="39" to="41">The heartache and the thousand natural shocks</span><br />
-<span class="verse" from="41" to="48">That flesh is heir to-'tis a consummation</span><br />
-<span class="verse" from="48" to="55">Devoutly to be wished. To die, to sleep-</span><br />
-<span class="verse" from="55" to="62">To sleep, perchance to dream. Aye, there's the rub,</span><br />
-<span class="verse" from="62" to="66">For in that sleep of death what dreams may come,</span><br />
-<span class="verse" from="66" to="67">When we have shuffled off this mortal coil,</span><br />
-<span class="verse" from="67" to="72">Must give us pause. There's the respect</span><br />
-<span class="verse" from="72" to="74">That makes calamity of so long life.</span><br />
-<span class="verse" from="74" to="77">For who would bear the whips and scorns of time,</span><br />
-<span class="verse" from="77" to="80">Th' oppressor's wrong, the proud man's contumely, </span><br />
-<span class="verse" from="80" to="82">The pangs of despised love, the law's delay,</span><br />
-<span class="verse" from="82" to="84">The insolence of office, and the spurns</span><br />
-<span class="verse" from="84" to="86">That patient merit of the unworthy takes,</span><br />
-<span class="verse" from="86" to="88">When he himself might his quietus make</span><br />
-<span class="verse" from="88" to="92">With a bare bodkin? Who would fardels bear,</span><br />
-<span class="verse" from="92" to="94">To grunt and sweat under a weary life,</span><br />
-<span class="verse" from="94" to="96">But that the dread of something after death,</span><br />
-<span class="verse" from="96" to="101">The undiscovered country from whose bourn</span><br />
-<span class="verse" from="101" to="104">No traveler returns, puzzles the will</span><br />
-<span class="verse" from="104" to="107">And makes us rather bear those ills we have</span><br />
-<span class="verse" from="107" to="110">Than fly to others that we know not of?</span><br />
-<span class="verse" from="110" to="116">Thus conscience does make cowards of us all,</span><br />
-<span class="verse" from="116" to="121">And thus the native hue of resolution</span><br />
-<span class="verse" from="121" to="124">Is sicklied o'er with the pale cast of thought,</span><br />
-<span class="verse" from="124" to="129">And enterprises of great pitch and moment,</span><br />
-<span class="verse" from="129" to="134">With this regard their currents turn awry,</span><br />
-<span class="verse" from="134" to="145">And lose the name of action.</span><br />
-</p>
-</div>
+    <p>
+      <span class="verse" from="00.00" to="08.609">To be or not to be-that is the question:</span>
+      <br />
+      <span class="verse" from="08.609" to="15.00">Whether 'tis nobler in the mind to suffer</span>
+      <br />
+      <span class="verse" from="15.00" to="18.06">The slings and arrows of outrageous fortune,</span>
+      <br />
+      <span class="verse" from="18.06" to="22.96">Or to take arms against a sea of troubles,</span>
+      <br />
+      <span class="verse" from="22.96" to="34">And, by opposing, end them. To die, to sleep-</span>
+      <br />
+      <span class="verse" from="34" to="39">No more-and by a sleep to say we end</span>
+      <br />
+      <span class="verse" from="39" to="41">The heartache and the thousand natural shocks</span>
+      <br />
+      <span class="verse" from="41" to="48">That flesh is heir to-'tis a consummation</span>
+      <br />
+      <span class="verse" from="48" to="55">Devoutly to be wished. To die, to sleep-</span>
+      <br />
+      <span class="verse" from="55" to="62">To sleep, perchance to dream. Aye, there's the rub,</span>
+      <br />
+      <span class="verse" from="62" to="66">For in that sleep of death what dreams may come,</span>
+      <br />
+      <span class="verse" from="66" to="67">When we have shuffled off this mortal coil,</span>
+      <br />
+      <span class="verse" from="67" to="72">Must give us pause. There's the respect</span>
+      <br />
+      <span class="verse" from="72" to="74">That makes calamity of so long life.</span>
+      <br />
+      <span class="verse" from="74" to="77">For who would bear the whips and scorns of time,</span>
+      <br />
+      <span class="verse" from="77" to="80">Th' oppressor's wrong, the proud man's contumely, </span>
+      <br />
+      <span class="verse" from="80" to="82">The pangs of despised love, the law's delay,</span>
+      <br />
+      <span class="verse" from="82" to="84">The insolence of office, and the spurns</span>
+      <br />
+      <span class="verse" from="84" to="86">That patient merit of the unworthy takes,</span>
+      <br />
+      <span class="verse" from="86" to="88">When he himself might his quietus make</span>
+      <br />
+      <span class="verse" from="88" to="92">With a bare bodkin? Who would fardels bear,</span>
+      <br />
+      <span class="verse" from="92" to="94">To grunt and sweat under a weary life,</span>
+      <br />
+      <span class="verse" from="94" to="96">But that the dread of something after death,</span>
+      <br />
+      <span class="verse" from="96" to="101">The undiscovered country from whose bourn</span>
+      <br />
+      <span class="verse" from="101" to="104">No traveler returns, puzzles the will</span>
+      <br />
+      <span class="verse" from="104" to="107">And makes us rather bear those ills we have</span>
+      <br />
+      <span class="verse" from="107" to="110">Than fly to others that we know not of?</span>
+      <br />
+      <span class="verse" from="110" to="116">Thus conscience does make cowards of us all,</span>
+      <br />
+      <span class="verse" from="116" to="121">And thus the native hue of resolution</span>
+      <br />
+      <span class="verse" from="121" to="124">Is sicklied o'er with the pale cast of thought,</span>
+      <br />
+      <span class="verse" from="124" to="129">And enterprises of great pitch and moment,</span>
+      <br />
+      <span class="verse" from="129" to="134">With this regard their currents turn awry,</span>
+      <br />
+      <span class="verse" from="134" to="145">And lose the name of action.</span>
+      <br />
+    </p>
+  </div>
+  <p>Audio from <a href="https://archive.org/details/ElfmansReadings_Hamlet">archive.org/Elfman101</a>
 </body>
 
 </html>
