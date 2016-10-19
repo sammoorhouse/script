@@ -3,6 +3,7 @@
 
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="js/verse.js"></script>
   <style>
     span.voice-active {
       background-color: lightyellow;
@@ -90,27 +91,7 @@
 
   <script>
     $(function() {
-      var target = $("#target");
-      target.bind("timeupdate", function() {
-        $(".verse").each(function() {
-          var from = parseFloat($(this).attr("from"))
-          var to = parseFloat($(this).attr("to"))
-          var time = target[0].currentTime
-          if ((from <= time) && (to > time)) {
-            $(this).toggleClass("voice-active", true)
-          } else {
-            $(this).toggleClass("voice-active", false)
-          }
-        })
-      })
-      target.bind("canplay", function() {
-        $(".verse").each(function() {
-          var from = parseFloat($(this).attr("from"))
-          $(this).bind("click", function() {
-            target[0].currentTime = from;
-          })
-        })
-      })
+      $("#target").versify();
     })
   </script>
   <div id="poem">
